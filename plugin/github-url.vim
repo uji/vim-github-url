@@ -12,7 +12,7 @@ function! s:repoURL()
     echo "Warning: Could not determine remote from '" . branch . "', assuming origin"
     let remote = "origin"
   endif
-  let repo = systemlist("git config --get remote." . remote . ".url | sed 's/\.git$//' | sed 's_^git@\\(.*\\):_https://\\1/_' | sed 's_^git://_https://_'")[0]
+  let repo = systemlist("git config --get remote." . remote . ".url | sed 's/\.git$//' | sed 's_^git@\\(.*\\):_https://\\1/_' | sed 's_^git://_https://_' | sed 's_^ssh://git@_https://_'")[0]
 
   return repo
 endfunction
